@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AireLogic.TechnicalChallenge.ConnorWard": {
+      "commandName": "Project",
+      "commandLineArgs": "\"Rammstein\""
+    }
+  }
+}
