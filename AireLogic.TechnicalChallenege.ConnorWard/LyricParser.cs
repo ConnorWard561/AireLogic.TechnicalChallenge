@@ -11,7 +11,6 @@ namespace AireLogic.TechnicalChallenge.ConnorWard
             if (string.IsNullOrEmpty(lyrics))
                 return new string[0];
 
-            // Extract to another class for unit testing
             return lyrics.Split(new string[] { "\r", "\n", " " }, StringSplitOptions.RemoveEmptyEntries).ToArray();
         }
     }

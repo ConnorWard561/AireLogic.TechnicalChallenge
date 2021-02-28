@@ -19,11 +19,11 @@ namespace AireLogic.TechnicalChallenege.ConnorWard.Models
         {
             get
             {
-                var numberOfSongs = RecordLyrics.Count;
+                var numberOfRecordings = RecordLyrics.Count;
 
-                var totalNumberOfWordsInSongs = RecordLyrics.SelectMany(x => x.Value).Count();
+                var totalNumberOfWordsInRecordings = RecordLyrics.SelectMany(x => x.Value).Count();
 
-                return (float)totalNumberOfWordsInSongs / numberOfSongs;
+                return (float)totalNumberOfWordsInRecordings / numberOfRecordings;
             }
         }
 

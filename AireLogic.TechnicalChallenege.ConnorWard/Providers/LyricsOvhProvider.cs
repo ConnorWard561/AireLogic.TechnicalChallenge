@@ -62,7 +62,7 @@ namespace AireLogic.TechnicalChallenege.ConnorWard.Providers
                 { }
 
                 retryCount++;
-                Thread.Sleep(2000);
+                await Task.Delay(2000);
             }
 
             return null;

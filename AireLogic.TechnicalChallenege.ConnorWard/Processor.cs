@@ -72,7 +72,7 @@ namespace AireLogic.TechnicalChallenege.ConnorWard
 
                 Interlocked.Increment(ref completedCombinations);
 
-                updateProgress?.Invoke($"Completed {completedCombinations} out of {totalCombinations} lyric artist / record combinations");
+                updateProgress?.Invoke($"Completed {completedCombinations} out of {totalCombinations} artist / record combinations");
             })
             .ToList();
 

@@ -117,7 +117,7 @@ namespace AireLogic.TechnicalChallenege.ConnorWard.Providers
 
                     // MusicBrainz easily becomes overwhelmed, so throttle to 5 requests every 2 seconds
                     if (i % 5 == 0)
-                        Thread.Sleep(2000);
+                        await Task.Delay(2000);
                 }
 
                 await Task.WhenAll(tasks);
@@ -130,12 +130,16 @@ namespace AireLogic.TechnicalChallenege.ConnorWard.Providers
 
         private async Task<GetRecordingsResponseModel> GetRecordingTitles(Guid artistId, int limit, int offset)
         {
-            var response = await httpClientProvider.GetAsync($"https://musicbrainz.org/ws/2/recording?artist={artistId}&fmt=json&limit={limit}&offset={offset}");
+            var url = $"https://musicbrainz.org/ws/2/recording?artist={artistId}&fmt=json&limit={limit}&offset={offset}";
+
+            var response = await httpClientProvider.GetAsync(url);
 
             while (response.StatusCode == HttpStatusCode.ServiceUnavailable)
             {
-                Thread.Sleep(1000);
-                response = await httpClientProvider.GetAsync($"https://musicbrainz.org/ws/2/recording?artist={artistId}&fmt=json&limit={limit}&offset={offset}");
+                // Wait 1 second and try again
+                await Task.Delay(1000);
+
+                response = await httpClientProvider.GetAsync(url);
             }
 
             var responseString = await response.Content.ReadAsStringAsync();
